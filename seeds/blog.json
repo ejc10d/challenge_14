@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Model-View-Control",
+        "content": "This setup allows for other developers and yourself alike to be able to work with your code more easily. Think of this as your code set up in layers. The Model layer holds the information for the data. The Control holds the logic for the code. And then Views layer holds the code that produces the user intervace."
+    },
+    {
+        "name": "Front-End",
+        "content": "The front end of code referrs to everything on the user side of the coding experience. This includes working in files like index.html, stylce.css, and script.js. A lot of people compare this to a house. The html is the frame of the house, also known as the 'bones'. The css is the paint and style of the house. This is what makes the house look nice. Some functions can be handled here as well. The js is what makes the house a home. This is the functionality of a site. A button might exist on your site and it might look real nice, but if it doensn't do something then it is worthless. The javascript is what brings it all together."
+    },
+    {
+        "name": "Back-End",
+        "content": "Back end development deals with a vast array of interworkings. This is where everything is brought together. The information that we get from the users on the front end has to go somewhere and that is where the back end comes in. Data drives so much about any industry in our current age. A lot of back end development tends to be more abstract becasue you're dealing directly with data. Javascript is still the language of the back end but we are using it in different ways now. Items can still be rendered dynamically to a page from the back end and this allows for data to be updated and change as needed, making things a lot more effecient."
+    }
+]

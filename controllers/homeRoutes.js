@@ -1,10 +1,11 @@
 const router = require('express').Router();
-const { Blog, User } = require('../models');
+const { Post, User } = require('../models');
+const sequelize = require('../config/connection')
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
     try {
-        const blogData = await Blog.findAll({
+        const postData = await Post.findAll({
             include: [
                 {
                     model: User,
@@ -13,10 +14,10 @@ router.get('/', async (req, res) => {
             ],
         });
 
-        const blog_posts = blogData.map((blog_post) => blog_post.get({ plain: true }));
+        const posts = postData.map((post) => post.get({ plain: true }));
 
         res.render('homepage', {
-            blog_posts,
+            posts,
             signed_in: req.session.signed_in
         });
     } catch (err) {
@@ -24,9 +25,9 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/blog/:id', async (req, res) => {
+router.get('/post/:id', async (req, res) => {
     try {
-        const blogData = await Blog.findByPk(req.params.id, {
+        const postData = await Post.findByPk(req.params.id, {
             include: [
                 {
                     model: User,
@@ -35,10 +36,10 @@ router.get('/blog/:id', async (req, res) => {
             ],
         });
 
-        const blog_post = blogData.get({ plain: true });
+        const post = postData.get({ plain: true });
 
-        res.render('blog', {
-            ...blog_post,
+        res.render('post', {
+            ...post,
             signed_in: req.session.signed_in
         });
     } catch (err) {
@@ -48,8 +49,8 @@ router.get('/blog/:id', async (req, res) => {
 
 router.get('/profile', withAuth, async (req, res) => {
     try {
-        const blogData = await User.findByPk(req.session.user_id, {
-            attributes: { exclude: ['password'] }, include: [{ model: Blog }],
+        const postData = await User.findByPk(req.session.user_id, {
+            attributes: { exclude: ['password'] }, include: [{ model: Post }],
         });
 
         const user = userData.get({ plain: true });

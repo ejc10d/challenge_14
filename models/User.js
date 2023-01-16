@@ -44,7 +44,7 @@ User.init(
             },
             beforeUpdate: async (updateUser) => {
                 updateUser.password = await
-                bcrypt.hash(updateUser.password, 10);
+                    bcrypt.hash(updateUser.password, 10);
                 return updateUser;
             },
         },

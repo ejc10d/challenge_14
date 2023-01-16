@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const {Blog} = require('../../models');
+const { Blog } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.post('/', withAuth, async (req, res) => { 
+router.post('/', withAuth, async (req, res) => {
     try {
         const newPost = await Blog.create({
             ...req.body,
@@ -25,7 +25,7 @@ router.delete('/:id', withAuth, async (req, res) => {
         });
 
         if (!blogData) {
-            res.status(400).json({message: 'No post found.'});
+            res.status(400).json({ message: 'No post found.' });
             return;
         }
 

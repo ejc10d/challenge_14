@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Blog, User} = require ('../models');
+const { Blog, User } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
             ],
         });
 
-        const blog_posts = blogData.map((blog_post) => blog_post.get({plain: true }));
+        const blog_posts = blogData.map((blog_post) => blog_post.get({ plain: true }));
 
         res.render('homepage', {
             blog_posts,
@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/blog/:id', async (req,res) => {
+router.get('/blog/:id', async (req, res) => {
     try {
         const blogData = await Blog.findByPk(req.params.id, {
             include: [
@@ -35,7 +35,7 @@ router.get('/blog/:id', async (req,res) => {
             ],
         });
 
-        const blog_post = blogData.get({plain: true});
+        const blog_post = blogData.get({ plain: true });
 
         res.render('blog', {
             ...blog_post,
@@ -49,10 +49,10 @@ router.get('/blog/:id', async (req,res) => {
 router.get('/profile', withAuth, async (req, res) => {
     try {
         const blogData = await User.findByPk(req.session.user_id, {
-            attributes: { exclude: ['password']}, include: [{ model: Blog}],
+            attributes: { exclude: ['password'] }, include: [{ model: Blog }],
         });
 
-        const user = userData.get({plain: true});
+        const user = userData.get({ plain: true });
 
         res.render('profile', {
             ...user,

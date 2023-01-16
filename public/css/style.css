@@ -1,0 +1,18 @@
+header, .blog:not(:last-child) {
+    border-bottom: 1px solid #ccc;
+}
+
+.no-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: chartreuse;
+    text-decoration: none;
+    font-size: 100%;
+}
+
+.no-button:hover {
+    color:blueviolet;
+    text-decoration: underline;
+}

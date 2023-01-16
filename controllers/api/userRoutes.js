@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User } = require('../../models');
 
 router.post('/', async (req, res) => {
-    try{
+    try {
         const userData = await User.create(req.body);
 
         req.session.save(() => {
@@ -19,18 +19,18 @@ router.post('/', async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const userData = await User.findOne({
-            where: {email: req.body.email}
+            where: { email: req.body.email }
         });
 
-        if(!userData) {
-            res.status(400).json({message: 'Incorrect email'});
+        if (!userData) {
+            res.status(400).json({ message: 'Incorrect email' });
             return;
         }
 
         const validatePassword = await userData.checkPassword(req.body.password);
 
-        if(!validatePassword) {
-            res.status(400).json({ message: 'Incorrect password'});
+        if (!validatePassword) {
+            res.status(400).json({ message: 'Incorrect password' });
             return;
         }
 
@@ -38,7 +38,7 @@ router.post('/login', async (req, res) => {
             req.session.user_id = userData.id;
             req.session.signed_in = true;
 
-            res.join({user: userData, message: 'You are signed in.'});
+            res.join({ user: userData, message: 'You are signed in.' });
         });
     } catch (err) {
         res.status(400).json(err);
@@ -46,7 +46,7 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/logout', (req, res) => {
-    if(res.session.signed_in) {
+    if (res.session.signed_in) {
         req.session.destroy(() => {
             res.status(204).end();
         });

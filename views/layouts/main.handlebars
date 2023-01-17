@@ -25,7 +25,7 @@
 
             <nav>
                 <a href="/">Home </a>|
-                {{#if signed_in}}
+                {{#if logged_in}}
                 <a href="/profile"> Profile </a> |
                 <button class="no-button" id="logout">Logout</button>
                 {{else}}
@@ -43,7 +43,7 @@
     </footer>
 
     <script src="/js/login.js"></script>
-    {{#if signed_in}}
+    {{#if logged_in}}
     <script src="/js/logout.js"></script>
     {{/if}}
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

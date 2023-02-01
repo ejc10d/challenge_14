@@ -16,3 +16,10 @@ header, .blog:not(:last-child) {
     color: rgb(86, 0, 0);
     text-decoration: underline;
 }
+
+.standard {
+    margin: 5px; 
+    padding: 5px; 
+    background-color: lightgrey
+}
+

@@ -19,11 +19,11 @@ router.post('/', async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const userData = await User.findOne({
-            where: { email: req.body.email }
+            where: { username: req.body.username }
         });
 
         if (!userData) {
-            res.status(400).json({ message: 'Incorrect email' });
+            res.status(400).json({ message: 'Incorrect username' });
             return;
         }
 
@@ -40,6 +40,19 @@ router.post('/login', async (req, res) => {
 
             res.json({ user: userData, message: 'You are signed in.' });
         });
+    } catch (err) {
+        res.status(400).json(err);
+    }
+});
+
+router.post('/signup', async (req, res) => {
+    try{
+        const newUser = await User.create({
+            ...req.body,
+            user_id: req.session.user_id,
+        });
+
+        res.status(200).json(newUser);
     } catch (err) {
         res.status(400).json(err);
     }

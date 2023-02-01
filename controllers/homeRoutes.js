@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
             include: [
                 {
                     model: User,
-                    attributes: ['name'],
+                    attributes: ['username'],
                 },
             ],
         });
@@ -24,14 +24,18 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/post/:id', async (req, res) => {
+router.get('/posts/:id', async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id, {
             include: [
                 {
                     model: User,
-                    attributes: ['name'],
-                },
+                    attributes: ['username'],
+                }, 
+                {
+                    model: Comment,
+                    include: [User]
+                }
             ],
         });
 
@@ -71,5 +75,14 @@ router.get('/login', (req, res) => {
 
     res.render('login');
 });
+
+router.get('/signup', (req, res) => {
+    if(req.session.logged_in) {
+        res.redirect('/profile');
+        return;
+    }
+
+    res.render('signup')
+})
 
 module.exports = router;

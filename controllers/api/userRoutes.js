@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
     try {
         const userData = await User.create(req.body);
 
@@ -45,18 +45,18 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.post('/signup', async (req, res) => {
-    try{
-        const newUser = await User.create({
-            ...req.body,
-            user_id: req.session.user_id,
-        });
+// router.post('/signup', async (req, res) => {
+//     try{
+//         const newUser = await User.create({
+//             ...req.body,
+//             user_id: req.session.user_id,
+//         });
 
-        res.status(200).json(newUser);
-    } catch (err) {
-        res.status(400).json(err);
-    }
-});
+//         res.status(200).json(newUser);
+//     } catch (err) {
+//         res.status(400).json(err);
+//     }
+// });
 
 router.post('/logout', (req, res) => {
     if (req.session.logged_in) {

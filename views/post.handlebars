@@ -18,7 +18,7 @@
 
     {{#if logged_in}}
     <div class="col-md-12 p-5">
-        <form class="new-comment-form rounded standard p-2" data-postid={{id}}>
+        <form class="new-comment-form rounded standard p-2" data-postid={{id}} data-userid={{id}}>
             <h2 class="text-xl">New Comment</h2>
             <div class="textArea">
                 <textarea class="form-control"id="comment_content" name="comment-body" placeholder="Type comment here..."
@@ -33,4 +33,4 @@
 </div>
 
 
-<script src="/js/comments.js"></script>
+<script src="/js/comment.js"></script>

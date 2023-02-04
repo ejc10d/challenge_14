@@ -10,4 +10,4 @@ To run this application you must have all the code. Then, open the command line,
 The following shows the deployed application on Heroku: ![deployed app on Heroku](./public/assets/screenshot1.jpg)
 
 ## Link
-This [link](https://www.heroku.com) will take you to the depolyed application on Heroku.
+This [link](https://techblogapp.herokuapp.com/) will take you to the depolyed application on Heroku.
